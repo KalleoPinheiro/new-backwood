@@ -1,0 +1,57 @@
+{
+  "name": "node-starter",
+  "version": "1.0.0",
+  "description": "Training with NodeJs",
+  "main": "./src/app.js",
+  "author": "Kalléo Pinheiro <kalleopinheiro@hotmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon ./bin/server.js",
+    "start": "node ./bin/server.js"
+  },
+  "dependencies": {
+    "cookie-session": "1.3.3",
+    "cross-env": "6.0.3",
+    "debug": "4.1.1",
+    "dotenv": "8.2.0",
+    "express": "4.17.1",
+    "helmet": "3.21.2",
+    "jsonschema": "1.2.5",
+    "validator": "12.1.0"
+  },
+  "devDependencies": {
+    "eslint": "6.7.2",
+    "eslint-config-airbnb-base": "14.0.0",
+    "eslint-config-prettier": "6.7.0",
+    "eslint-plugin-import": "2.19.1",
+    "eslint-plugin-prettier": "3.1.1",
+    "git-cz": "3.3.0",
+    "husky": "3.1.0",
+    "lint-staged": "9.5.0",
+    "nodemon": "2.0.1",
+    "prettier": "1.19.1"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx}": [
+      "eslint . --fix",
+      "prettier --write",
+      "git add"
+    ],
+    "src/**/*.scss": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "prepare-commit-msg": "exec < /dev/tty && git cz"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/git-cz"
+    }
+  }
+}
