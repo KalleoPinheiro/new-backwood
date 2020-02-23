@@ -1,15 +1,26 @@
-const express = require('express');
-const helmet = require('helmet');
-const routes = require('./app/routes');
-require('dotenv').config();
+import 'dotenv/config';
+import './database';
 
-(() => {
-  const app = express();
-  app.use(helmet());
-  app.use(express.json({ limit: '300kb' }));
+import express from 'express';
+import helmet from 'helmet';
 
-  // Load Routes
-  app.use(routes);
+import routes from './app/routes';
 
-  module.exports = app;
-})();
+class App {
+  constructor() {
+    this.app = express();
+    this.middlawares();
+    this.routes();
+  }
+
+  middlawares() {
+    this.app.use(helmet());
+    this.app.use(express.json({ limit: '300kb' }));
+  }
+
+  routes() {
+    this.app.use(routes);
+  }
+}
+
+export default new App().app;

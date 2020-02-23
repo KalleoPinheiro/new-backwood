@@ -1,16 +1,13 @@
-const express = require('express');
-const jsonValidator = require('./middlewares/json-validator');
+import { Router } from 'express';
 
-const router = express.Router();
+import IndexController from './controllers/index-controller';
+import UserController from './controllers/user-controller';
 
-(() => {
-  router.get('/', (_, res) => {
-    res.status(200).json({ message: 'Working' });
-  });
+import UserValidator from './validators/user-store';
 
-  router.post('/test', jsonValidator, (req, res) => {
-    res.status(200).json(req.body);
-  });
+const router = Router();
 
-  module.exports = router;
-})();
+router.get('/', IndexController.index);
+router.post('/users', UserValidator, UserController.store);
+
+module.exports = router;
