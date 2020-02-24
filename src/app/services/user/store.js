@@ -1,4 +1,4 @@
-import User from '../models/user';
+import User from '../../models/user';
 
 class UserService {
   async run(name, email, password, admin) {
